@@ -1,1 +1,1 @@
-https://liaomaple.github.io/Lenormand/
+https://liaomaple.github.io/Lenormand-Card-Meanings/
