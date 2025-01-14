@@ -6,27 +6,32 @@
     <title>Lenormand Card Meanings</title>
     <link rel="icon" href="https://www.reshot.com/preview-assets/icons/H3M92KSZJT/candle-H3M92KSZJT.svg" type="image/png">
     <style>
+        /* 設定背景為全螢幕，並應用漸層顏色 */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background: linear-gradient(180deg, #2c1d3f, #1f2a4f); /* 設定背景漸層 */
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            height: 100vh; /* 設定高度為100%螢幕 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff; /* 修改為白色，讓標題在深色背景上更突出 */
         }
-        .cardSelect {
-            width: 80%;
-            padding: 10px;
-            margin: 20px auto;
-            display: block;
-            font-size: 16px;
-        }
-        .cardContainer {
+        .cardSelectContainer {
             display: flex;
             justify-content: space-around;
-            gap: 20px;
+            width: 80%;
+            margin: 20px auto;
+        }
+        .cardSelect {
+            width: 30%;
+            padding: 10px;
+            font-size: 16px;
         }
         #cardDescription {
             padding: 15px;
@@ -45,7 +50,7 @@
 
 <h1>✡Lenormand Card Meanings✡</h1>
 
-<div class="cardContainer">
+<div class="cardSelectContainer">
     <select id="cardSelect1" class="cardSelect" onchange="showCardDescription()">
         <option value="">請選擇第一張卡牌</option>
         <option value="rider">1. 騎士</option>
