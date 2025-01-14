@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷諾曼卡解讀</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .cardSelect {
+            width: 80%;
+            padding: 10px;
+            margin: 20px auto;
+            display: block;
+            font-size: 16px;
+        }
+        .cardContainer {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        #cardDescription {
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none; /* 初始隱藏解釋區域 */
+        }
+    </style>
+</head>
+<body>
+
+<h1>雷諾曼卡解讀</h1>
+
+<div class="cardContainer">
+    <select id="cardSelect1" class="cardSelect" onchange="showCardDescription()">
+        <option value="">請選擇第一張卡牌</option>
+        <option value="rider">1. 騎士</option>
+        <option value="clover">2. 幸運草</option>
+        <option value="ship">3. 船</option>
+        <option value="house">4. 房子</option>
+        <option value="tree">5. 樹</option>
+        <option value="clouds">6. 雲</option>
+        <option value="snake">7. 蛇</option>
+        <option value="coffin">8. 棺材</option>
+        <option value="bouquet">9. 花束</option>
+        <option value="scythe">10. 鐮刀</option>
+        <option value="whip">11. 鞭子</option>
+        <option value="birds">12. 小鳥</option>
+        <option value="child">13. 小孩</option>
+        <option value="fox">14. 狐狸</option>
+        <option value="bear">15. 熊</option>
+        <option value="stars">16. 星星</option>
+        <option value="stork">17. 送子鳥</option>
+        <option value="dog">18. 狗</option>
+        <option value="tower">19. 高塔</option>
+        <option value="garden">20. 花園</option>
+        <option value="mountain">21. 高山</option>
+        <option value="crossroads">22. 十字路口</option>
+        <option value="mice">23. 老鼠</option>
+        <option value="heart">24. 心</option>
+        <option value="ring">25. 戒指</option>
+        <option value="book">26. 書</option>
+        <option value="letter">27. 信</option>
+        <option value="man">28. 男人</option>
+        <option value="woman">29. 女人</option>
+        <option value="lily">30. 百合</option>
+        <option value="sun">31. 太陽</option>
+        <option value="moon">32. 月亮</option>
+        <option value="key">33. 鑰匙</option>
+        <option value="fish">34. 魚</option>
+        <option value="anchor">35. 錨</option>
+        <option value="cross">36. 十字架</option>
+    </select>
+    
+    <select id="cardSelect2" class="cardSelect" onchange="showCardDescription()">
+        <option value="">請選擇第二張卡牌</option>
+        <option value="rider">1. 騎士</option>
+        <option value="clover">2. 幸運草</option>
+        <option value="ship">3. 船</option>
+        <option value="house">4. 房子</option>
+        <option value="tree">5. 樹</option>
+        <option value="clouds">6. 雲</option>
+        <option value="snake">7. 蛇</option>
+        <option value="coffin">8. 棺材</option>
+        <option value="bouquet">9. 花束</option>
+        <option value="scythe">10. 鐮刀</option>
+        <option value="whip">11. 鞭子</option>
+        <option value="birds">12. 小鳥</option>
+        <option value="child">13. 小孩</option>
+        <option value="fox">14. 狐狸</option>
+        <option value="bear">15. 熊</option>
+        <option value="stars">16. 星星</option>
+        <option value="stork">17. 送子鳥</option>
+        <option value="dog">18. 狗</option>
+        <option value="tower">19. 高塔</option>
+        <option value="garden">20. 花園</option>
+        <option value="mountain">21. 高山</option>
+        <option value="crossroads">22. 十字路口</option>
+        <option value="mice">23. 老鼠</option>
+        <option value="heart">24. 心</option>
+        <option value="ring">25. 戒指</option>
+        <option value="book">26. 書</option>
+        <option value="letter">27. 信</option>
+        <option value="man">28. 男人</option>
+        <option value="woman">29. 女人</option>
+        <option value="lily">30. 百合</option>
+        <option value="sun">31. 太陽</option>
+        <option value="moon">32. 月亮</option>
+        <option value="key">33. 鑰匙</option>
+        <option value="fish">34. 魚</option>
+        <option value="anchor">35. 錨</option>
+        <option value="cross">36. 十字架</option>
+    </select>
+    
+    <select id="cardSelect3" class="cardSelect" onchange="showCardDescription()">
+        <option value="">請選擇第三張卡牌</option>
+        <option value="rider">1. 騎士</option>
+        <option value="clover">2. 幸運草</option>
+        <option value="ship">3. 船</option>
+        <option value="house">4. 房子</option>
+        <option value="tree">5. 樹</option>
+        <option value="clouds">6. 雲</option>
+        <option value="snake">7. 蛇</option>
+        <option value="coffin">8. 棺材</option>
+        <option value="bouquet">9. 花束</option>
+        <option value="scythe">10. 鐮刀</option>
+        <option value="whip">11. 鞭子</option>
+        <option value="birds">12. 小鳥</option>
+        <option value="child">13. 小孩</option>
+        <option value="fox">14. 狐狸</option>
+        <option value="bear">15. 熊</option>
+        <option value="stars">16. 星星</option>
+        <option value="stork">17. 送子鳥</option>
+        <option value="dog">18. 狗</option>
+        <option value="tower">19. 高塔</option>
+        <option value="garden">20. 花園</option>
+        <option value="mountain">21. 高山</option>
+        <option value="crossroads">22. 十字路口</option>
+        <option value="mice">23. 老鼠</option>
+        <option value="heart">24. 心</option>
+        <option value="ring">25. 戒指</option>
+        <option value="book">26. 書</option>
+        <option value="letter">27. 信</option>
+        <option value="man">28. 男人</option>
+        <option value="woman">29. 女人</option>
+        <option value="lily">30. 百合</option>
+        <option value="sun">31. 太陽</option>
+        <option value="moon">32. 月亮</option>
+        <option value="key">33. 鑰匙</option>
+        <option value="fish">34. 魚</option>
+        <option value="anchor">35. 錨</option>
+        <option value="cross">36. 十字架</option>
+    </select>
+</div>
+
+<div id="cardDescription"></div>
+
+<script>
+    const cardDescriptions = {
+        rider: "騎士：代表消息、信使、快速的變化。",
+        clover: "幸運草：象徵小幸運、短暫的機會。",
+        ship: "船：代表旅行、貿易、遠方的事物。",
+        house: "房子：象徵家庭、家園、穩定。",
+        tree: "樹：代表健康、生命力、成長。",
+        clouds: "雲：象徵混亂、不確定性、困惑。",
+        snake: "蛇：代表誘惑、隱藏的危險、女性對手。",
+        coffin: "棺材：象徵結束、轉變、疾病。",
+        bouquet: "花束：代表禮物、讚美、愉快的驚喜。",
+        scythe: "鐮刀：象徵割斷、快速的變化、危險。",
+        whip: "鞭子：代表爭吵、衝突、重複的行為。",
+        birds: "小鳥：象徵對話、消息、社交。",
+        child: "小孩：代表新開始、純真、未來的可能性。",
+        fox: "狐狸：象徵狡猾、欺騙、工作相關的事物。",
+        bear: "熊：代表力量、財富、保護。",
+        stars: "星星：象徵希望、指引、靈感。",
+        stork: "送子鳥：代表變化、遷移、進步。",
+        dog: "狗：象徵忠誠、友誼、支持。",
+        tower: "高塔：代表機構、權威、孤立。",
+        garden: "花園：象徵社交、公共場所、活動。",
+        mountain: "高山：代表障礙、挑戰、困難。",
+        crossroads: "十字路口：象徵選擇、決策、分岔路。",
+        mice: "老鼠：代表損失、焦慮、細節。",
+        heart: "心：象徵愛情、情感、心靈。",
+        ring: "戒指：代表承諾、契約、循環。",
+        book: "書：象徵知識、秘密、學習。",
+        letter: "信：代表消息、文件、溝通。",
+        man: "男人：代表男性、詢問者、重要男性人物。",
+        woman: "女人：代表女性、詢問者、重要女性人物。",
+        lily: "百合：象徵純潔、年長者、和諧。",
+        sun: "太陽：代表成功、活力、正面能量。",
+        moon: "月亮：象徵直覺、情感、名聲。",
+        key: "鑰匙：代表解答、成功、重要性。",
+        fish: "魚：象徵財富、流動、商業。",
+        anchor: "錨：代表穩定、安全、固定。",
+        cross: "十字架：象徵考驗、信仰、重擔。"
+    };
+
+    function showCardDescription() {
+        let selectedCards = [
+            document.getElementById("cardSelect1").value,
+            document.getElementById("cardSelect2").value,
+            document.getElementById("cardSelect3").value
+        ];
+
+        // 如果有選擇任何卡牌，就顯示解釋區域
+        if (selectedCards.some(card => card !== "")) {
+            let descriptionHtml = "<h2>選擇的卡牌解釋：</h2>";
+
+            selectedCards.forEach(card => {
+                if (card) {
+                    descriptionHtml += `<p><strong>${card}</strong>: ${cardDescriptions[card]}</p>`;
+                }
+            });
+
+            document.getElementById("cardDescription").innerHTML = descriptionHtml;
+            document.getElementById("cardDescription").style.display = "block"; // 顯示解釋區域
+        } else {
+            document.getElementById("cardDescription").style.display = "none"; // 隱藏解釋區域
+        }
+    }
+</script>
+
+</body>
+</html>
