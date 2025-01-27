@@ -180,10 +180,10 @@
         // 動態生成選項
         const cardSelects = document.querySelectorAll("select");
         cardSelects.forEach(select => {
-            cards.forEach(card => {
+            cards.forEach((card, index) => {
                 const option = document.createElement("option");
                 option.value = card.name;
-                option.textContent = card.name;
+                option.textContent = `${index + 1}. ${card.name}`; // 加上編號
                 select.appendChild(option);
             });
         });
