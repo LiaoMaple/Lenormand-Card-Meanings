@@ -3,241 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenormand Card Meanings</title>
-    <link rel="icon" href="https://www.reshot.com/preview-assets/icons/H3M92KSZJT/candle-H3M92KSZJT.svg" type="image/png">
+    <title>雷諾曼卡牌牌義解讀</title>
     <style>
-        /* 設定背景為全螢幕，並應用漸層顏色 */
+        /* 星空背景 */
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #2c1d3f, #1f2a4f); /* 設定背景漸層 */
             margin: 0;
             padding: 0;
-            height: 100vh; /* 設定高度為100%螢幕 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        h1 {
+            font-family: Arial, sans-serif;
+            color: #fff;
             text-align: center;
-            color: #fff; /* 修改為白色，讓標題在深色背景上更突出 */
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            height: 100vh;
+            position: relative;
+            overflow: auto; /* 允許頁面滾動 */
         }
-        .cardSelectContainer {
+
+        /* 星星動畫 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .stars {
+            position: fixed; /* 改為 fixed 避免遮擋內容 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* 將星星放在最底層 */
+        }
+
+        .stars span {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        /* 其他樣式 */
+        h1 {
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .card-container {
             display: flex;
             justify-content: space-around;
-            width: 80%;
-            margin: 20px auto;
+            margin-top: 20px;
+            position: relative; /* 確保卡片在星星之上 */
+            z-index: 1; /* 確保卡片在星星之上 */
         }
-        .cardSelect {
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 10px;
             width: 30%;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        select {
             padding: 10px;
             font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            width: 100%; /* 讓選單寬度填滿卡片 */
         }
-        #cardDescription {
-            padding: 15px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             margin-top: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            display: none;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #fff;
+            position: relative; /* 確保結果在星星之上 */
+            z-index: 1; /* 確保結果在星星之上 */
         }
     </style>
 </head>
 <body>
+    <!-- 星空背景 -->
+    <div class="stars">
+        <!-- 星星由 JavaScript 動態生成 -->
+    </div>
 
-<h1>✡Lenormand Card Meanings✡</h1>
+    <h1>雷諾曼卡牌牌義解讀</h1>
+    <p>請選擇卡牌來查看其牌義（可選擇 1 至 3 張）：</p>
 
-<div class="cardSelectContainer">
-    <select id="cardSelect1" class="cardSelect" onchange="showCardDescription()">
-        <option value="">請選擇第一張卡牌</option>
-        <option value="rider">1. 騎士</option>
-        <option value="clover">2. 幸運草</option>
-        <option value="ship">3. 船</option>
-        <option value="house">4. 房子</option>
-        <option value="tree">5. 樹</option>
-        <option value="clouds">6. 雲</option>
-        <option value="snake">7. 蛇</option>
-        <option value="coffin">8. 棺材</option>
-        <option value="bouquet">9. 花束</option>
-        <option value="scythe">10. 鐮刀</option>
-        <option value="whip">11. 鞭子</option>
-        <option value="birds">12. 小鳥</option>
-        <option value="child">13. 小孩</option>
-        <option value="fox">14. 狐狸</option>
-        <option value="bear">15. 熊</option>
-        <option value="stars">16. 星星</option>
-        <option value="stork">17. 送子鳥</option>
-        <option value="dog">18. 狗</option>
-        <option value="tower">19. 高塔</option>
-        <option value="garden">20. 花園</option>
-        <option value="mountain">21. 高山</option>
-        <option value="crossroads">22. 十字路口</option>
-        <option value="mice">23. 老鼠</option>
-        <option value="heart">24. 心</option>
-        <option value="ring">25. 戒指</option>
-        <option value="book">26. 書</option>
-        <option value="letter">27. 信</option>
-        <option value="man">28. 男人</option>
-        <option value="woman">29. 女人</option>
-        <option value="lily">30. 百合</option>
-        <option value="sun">31. 太陽</option>
-        <option value="moon">32. 月亮</option>
-        <option value="key">33. 鑰匙</option>
-        <option value="fish">34. 魚</option>
-        <option value="anchor">35. 錨</option>
-        <option value="cross">36. 十字架</option>
-    </select>
-    
-    <select id="cardSelect2" class="cardSelect" onchange="showCardDescription()">
-        <option value="">請選擇第二張卡牌</option>
-        <option value="rider">1. 騎士</option>
-        <option value="clover">2. 幸運草</option>
-        <option value="ship">3. 船</option>
-        <option value="house">4. 房子</option>
-        <option value="tree">5. 樹</option>
-        <option value="clouds">6. 雲</option>
-        <option value="snake">7. 蛇</option>
-        <option value="coffin">8. 棺材</option>
-        <option value="bouquet">9. 花束</option>
-        <option value="scythe">10. 鐮刀</option>
-        <option value="whip">11. 鞭子</option>
-        <option value="birds">12. 小鳥</option>
-        <option value="child">13. 小孩</option>
-        <option value="fox">14. 狐狸</option>
-        <option value="bear">15. 熊</option>
-        <option value="stars">16. 星星</option>
-        <option value="stork">17. 送子鳥</option>
-        <option value="dog">18. 狗</option>
-        <option value="tower">19. 高塔</option>
-        <option value="garden">20. 花園</option>
-        <option value="mountain">21. 高山</option>
-        <option value="crossroads">22. 十字路口</option>
-        <option value="mice">23. 老鼠</option>
-        <option value="heart">24. 心</option>
-        <option value="ring">25. 戒指</option>
-        <option value="book">26. 書</option>
-        <option value="letter">27. 信</option>
-        <option value="man">28. 男人</option>
-        <option value="woman">29. 女人</option>
-        <option value="lily">30. 百合</option>
-        <option value="sun">31. 太陽</option>
-        <option value="moon">32. 月亮</option>
-        <option value="key">33. 鑰匙</option>
-        <option value="fish">34. 魚</option>
-        <option value="anchor">35. 錨</option>
-        <option value="cross">36. 十字架</option>
-    </select>
-    
-    <select id="cardSelect3" class="cardSelect" onchange="showCardDescription()">
-        <option value="">請選擇第三張卡牌</option>
-        <option value="rider">1. 騎士</option>
-        <option value="clover">2. 幸運草</option>
-        <option value="ship">3. 船</option>
-        <option value="house">4. 房子</option>
-        <option value="tree">5. 樹</option>
-        <option value="clouds">6. 雲</option>
-        <option value="snake">7. 蛇</option>
-        <option value="coffin">8. 棺材</option>
-        <option value="bouquet">9. 花束</option>
-        <option value="scythe">10. 鐮刀</option>
-        <option value="whip">11. 鞭子</option>
-        <option value="birds">12. 小鳥</option>
-        <option value="child">13. 小孩</option>
-        <option value="fox">14. 狐狸</option>
-        <option value="bear">15. 熊</option>
-        <option value="stars">16. 星星</option>
-        <option value="stork">17. 送子鳥</option>
-        <option value="dog">18. 狗</option>
-        <option value="tower">19. 高塔</option>
-        <option value="garden">20. 花園</option>
-        <option value="mountain">21. 高山</option>
-        <option value="crossroads">22. 十字路口</option>
-        <option value="mice">23. 老鼠</option>
-        <option value="heart">24. 心</option>
-        <option value="ring">25. 戒指</option>
-        <option value="book">26. 書</option>
-        <option value="letter">27. 信</option>
-        <option value="man">28. 男人</option>
-        <option value="woman">29. 女人</option>
-        <option value="lily">30. 百合</option>
-        <option value="sun">31. 太陽</option>
-        <option value="moon">32. 月亮</option>
-        <option value="key">33. 鑰匙</option>
-        <option value="fish">34. 魚</option>
-        <option value="anchor">35. 錨</option>
-        <option value="cross">36. 十字架</option>
-    </select>
-</div>
+    <div class="card-container">
+        <div class="card">
+            <label for="card1">第一張卡牌：</label>
+            <select id="card1">
+                <option value="">請選擇</option>
+                <!-- 選項由 JavaScript 動態生成 -->
+            </select>
+        </div>
+        <div class="card">
+            <label for="card2">第二張卡牌：</label>
+            <select id="card2">
+                <option value="">請選擇</option>
+                <!-- 選項由 JavaScript 動態生成 -->
+            </select>
+        </div>
+        <div class="card">
+            <label for="card3">第三張卡牌：</label>
+            <select id="card3">
+                <option value="">請選擇</option>
+                <!-- 選項由 JavaScript 動態生成 -->
+            </select>
+        </div>
+    </div>
 
-<div id="cardDescription"></div>
+    <button onclick="showCardMeanings()">顯示牌義</button>
 
-<script>
-    const cardDescriptions = {
-        rider: "騎士：代表消息、信使、快速的變化。",
-        clover: "幸運草：象徵小幸運、短暫的機會。",
-        ship: "船：代表旅行、貿易、遠方的事物。",
-        house: "房子：象徵家庭、家園、穩定。",
-        tree: "樹：代表健康、生命力、成長。",
-        clouds: "雲：象徵混亂、不確定性、困惑。",
-        snake: "蛇：代表誘惑、隱藏的危險、女性對手。",
-        coffin: "棺材：象徵結束、轉變、疾病。",
-        bouquet: "花束：代表禮物、讚美、愉快的驚喜。",
-        scythe: "鐮刀：象徵割斷、快速的變化、危險。",
-        whip: "鞭子：代表爭吵、衝突、重複的行為。",
-        birds: "小鳥：象徵對話、消息、社交。",
-        child: "小孩：代表新開始、純真、未來的可能性。",
-        fox: "狐狸：象徵狡猾、欺騙、工作相關的事物。",
-        bear: "熊：代表力量、財富、保護。",
-        stars: "星星：象徵希望、指引、靈感。",
-        stork: "送子鳥：代表變化、遷移、進步。",
-        dog: "狗：象徵忠誠、友誼、支持。",
-        tower: "高塔：代表機構、權威、孤立。",
-        garden: "花園：象徵社交、公共場所、活動。",
-        mountain: "高山：代表障礙、挑戰、困難。",
-        crossroads: "十字路口：象徵選擇、決策、分岔路。",
-        mice: "老鼠：代表損失、焦慮、細節。",
-        heart: "心：象徵愛情、情感、心靈。",
-        ring: "戒指：代表承諾、契約、循環。",
-        book: "書：象徵知識、秘密、學習。",
-        letter: "信：代表消息、文件、溝通。",
-        man: "男人：代表男性、詢問者、重要男性人物。",
-        woman: "女人：代表女性、詢問者、重要女性人物。",
-        lily: "百合：象徵純潔、年長者、和諧。",
-        sun: "太陽：代表成功、活力、正面能量。",
-        moon: "月亮：象徵直覺、情感、名聲。",
-        key: "鑰匙：代表解答、成功、重要性。",
-        fish: "魚：象徵財富、流動、商業。",
-        anchor: "錨：代表穩定、安全、固定。",
-        cross: "十字架：象徵考驗、信仰、重擔。"
-    };
+    <div class="result" id="result"></div>
 
-    function showCardDescription() {
-        let selectedCards = [
-            document.getElementById("cardSelect1").value,
-            document.getElementById("cardSelect2").value,
-            document.getElementById("cardSelect3").value
+    <script>
+        // 雷諾曼卡牌資料
+        const cards = [
+            { name: "騎士", meaning: "消息、快速行動、訪客、新機會。" },
+            { name: "幸運草", meaning: "幸運、小確幸、短暫的快樂。" },
+            { name: "船", meaning: "旅行、遠距離、轉變、探索。" },
+            { name: "房子", meaning: "家庭、穩定、安全感、財產。" },
+            { name: "樹", meaning: "健康、成長、長期發展、靈性。" },
+            { name: "雲", meaning: "困惑、不確定性、模糊的狀況。" },
+            { name: "蛇", meaning: "欺騙、複雜的關係、誘惑。" },
+            { name: "棺材", meaning: "結束、轉變、釋放。" },
+            { name: "花束", meaning: "禮物、讚美、美好的事物。" },
+            { name: "鐮刀", meaning: "突然的變化、切割、決定。" },
+            { name: "鞭子", meaning: "衝突、爭吵、重複。" },
+            { name: "鳥", meaning: "溝通、社交、焦慮。" },
+            { name: "孩子", meaning: "新的開始、純真、小規模。" },
+            { name: "狐狸", meaning: "狡猾、策略、隱藏的動機。" },
+            { name: "熊", meaning: "力量、保護、權威。" },
+            { name: "星星", meaning: "希望、靈感、指引。" },
+            { name: "鸛", meaning: "變化、移動、新生。" },
+            { name: "狗", meaning: "忠誠、友誼、支持。" },
+            { name: "塔", meaning: "孤立、結構、權威。" },
+            { name: "花園", meaning: "社交、公共場合、團體。" },
+            { name: "山", meaning: "障礙、延遲、挑戰。" },
+            { name: "十字路", meaning: "選擇、決定、不確定性。" },
+            { name: "老鼠", meaning: "損失、消耗、焦慮。" },
+            { name: "心", meaning: "愛、情感、熱情。" },
+            { name: "戒指", meaning: "承諾、合約、循環。" },
+            { name: "書", meaning: "秘密、知識、學習。" },
+            { name: "信", meaning: "消息、文件、溝通。" },
+            { name: "男人", meaning: "男性人物、主動能量。" },
+            { name: "女人", meaning: "女性人物、被動能量。" },
+            { name: "百合", meaning: "平靜、成熟、和諧。" },
+            { name: "太陽", meaning: "成功、快樂、清晰。" },
+            { name: "月亮", meaning: "直覺、情感、名聲。" },
+            { name: "鑰匙", meaning: "解決方案、機會、解鎖。" },
+            { name: "魚", meaning: "財富、流動性、豐富。" },
+            { name: "錨", meaning: "穩定、安全、長期目標。" },
+            { name: "十字架", meaning: "負擔、命運、挑戰。" }
         ];
 
-        // 如果有選擇任何卡牌，就顯示解釋區域
-        if (selectedCards.some(card => card !== "")) {
-            let descriptionHtml = "<h2>選擇的卡牌解釋：</h2>";
-
-            selectedCards.forEach(card => {
-                if (card) {
-                    descriptionHtml += `<p><strong>${card}</strong>: ${cardDescriptions[card]}</p>`;
-                }
+        // 動態生成選項
+        const cardSelects = document.querySelectorAll("select");
+        cardSelects.forEach(select => {
+            cards.forEach(card => {
+                const option = document.createElement("option");
+                option.value = card.name;
+                option.textContent = card.name;
+                select.appendChild(option);
             });
+        });
 
-            document.getElementById("cardDescription").innerHTML = descriptionHtml;
-            document.getElementById("cardDescription").style.display = "block"; // 顯示解釋區域
-        } else {
-            document.getElementById("cardDescription").style.display = "none"; // 隱藏解釋區域
+        // 顯示牌義
+        function showCardMeanings() {
+            const selectedCards = [];
+            const card1 = document.getElementById("card1").value;
+            const card2 = document.getElementById("card2").value;
+            const card3 = document.getElementById("card3").value;
+
+            // 將選擇的卡牌加入陣列
+            if (card1) selectedCards.push(card1);
+            if (card2) selectedCards.push(card2);
+            if (card3) selectedCards.push(card3);
+
+            // 檢查是否至少選擇一張卡牌
+            if (selectedCards.length === 0) {
+                alert("請至少選擇一張卡牌！");
+                return;
+            }
+
+            // 顯示牌義
+            const resultDiv = document.getElementById("result");
+            let resultHTML = "<h2>牌義解讀：</h2>";
+            selectedCards.forEach(cardName => {
+                const card = cards.find(c => c.name === cardName);
+                resultHTML += `<p><strong>${card.name}</strong>：${card.meaning}</p>`;
+            });
+            resultDiv.innerHTML = resultHTML;
         }
-    }
-</script>
 
+        // 動態生成星星
+        const starsContainer = document.querySelector(".stars");
+        const starCount = 100; // 星星數量
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement("span");
+            star.style.width = `${Math.random() * 3}px`; // 星星大小
+            star.style.height = star.style.width;
+            star.style.top = `${Math.random() * 100}%`; // 星星位置
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`; // 閃爍延遲
+            star.style.animationDuration = `${1 + Math.random() * 2}s`; // 閃爍速度
+            starsContainer.appendChild(star);
+        }
+    </script>
 </body>
 </html>
