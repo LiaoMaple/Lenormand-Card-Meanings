@@ -15,13 +15,21 @@
             background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
             height: 100vh;
             position: relative;
-            overflow: auto; /* 允許頁面滾動 */
+            overflow: auto;
+            opacity: 0; /* 初始狀態為透明 */
+            animation: fadeIn 1s ease forwards; /* 添加淡入效果 */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* 最終狀態為不透明 */
+            }
         }
 
         /* 星星動畫 */
         @keyframes twinkle {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.2; } /* 讓星星閃爍時變得更暗 */
         }
 
         .stars {
@@ -39,6 +47,8 @@
             background: white;
             border-radius: 50%;
             animation: twinkle 2s infinite ease-in-out;
+            animation-delay: var(--delay); /* 使用變量來控制延遲 */
+            animation-duration: var(--duration); /* 使用變量來控制動畫時長 */
         }
 
         /* 其他樣式 */
@@ -63,6 +73,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加過渡效果 */
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05); /* 懸浮時卡牌上移並放大 */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 增加陰影效果 */
         }
 
         select {
@@ -84,18 +100,25 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 20px;
+            transition: transform 0.1s ease; /* 添加過渡效果 */
         }
 
-        button:hover {
-            background-color: #218838;
+        button:active {
+            transform: scale(0.95); /* 按鈕被點擊時縮小 */
         }
 
         .result {
             margin-top: 30px;
             font-size: 18px;
             color: #fff;
-            position: relative; /* 確保結果在星星之上 */
-            z-index: 1; /* 確保結果在星星之上 */
+            position: relative;
+            z-index: 1;
+            opacity: 0; /* 初始狀態為透明 */
+            transition: opacity 0.5s ease; /* 添加淡入效果 */
+        }
+
+        .result.show {
+            opacity: 1; /* 顯示時變為不透明 */
         }
     </style>
 </head>
@@ -214,6 +237,7 @@
                 resultHTML += `<p><strong>${card.name}</strong>：${card.meaning}</p>`;
             });
             resultDiv.innerHTML = resultHTML;
+            resultDiv.classList.add("show"); // 添加 show 類別以觸發淡入效果
         }
 
         // 動態生成星星
@@ -226,8 +250,8 @@
             star.style.height = star.style.width;
             star.style.top = `${Math.random() * 100}%`; // 星星位置
             star.style.left = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 2}s`; // 閃爍延遲
-            star.style.animationDuration = `${1 + Math.random() * 2}s`; // 閃爍速度
+            star.style.setProperty('--delay', `${Math.random() * 2}s`); // 隨機延遲
+            star.style.setProperty('--duration', `${1 + Math.random() * 2}s`); // 隨機時長
             starsContainer.appendChild(star);
         }
     </script>
